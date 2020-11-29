@@ -314,24 +314,14 @@ public class AVLTree<T extends Comparable<T>> implements Set<T> {
         return array;
     }
 
-
-    List<T> list;
-
     @Override
     public String toString() {
-        if (root == null)
-            return "[]";
-        list = new ArrayList<>();
-        fillList(root);
-        return list.toString();
-    }
-
-    private void fillList(Node<T> node) {
-        list.add(node.value);
-        if (node.left != null)
-            fillList(node.left);
-        if (node.right != null)
-            fillList(node.right);
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        forEach(e -> sb.append(e).append(", "));
+        sb.delete(sb.length()-2, sb.length());
+        sb.append("]");
+        return sb.toString();
     }
 
     public int getRootBalance() {
